@@ -1,0 +1,14 @@
+{
+  "name": "alm-issue-change",
+  "version": "0.0.1",
+  "private": true,
+  "description": "ALM issue change data processor",
+  "author": "Boris Belozovsky <boris.belozovsky@hp.com>",
+  "dependencies": {
+    "xml2js": "0.4.10"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2"
+  }
+}
