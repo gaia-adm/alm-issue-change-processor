@@ -28,7 +28,7 @@ function parseXml (data){
         for(var i = 0; i< elements; i++) {
             var auditEvent = {};
             auditEvent.event = "issue_change";
-            //TODO - boris: parse to  ISO 8601, what TZ we receive from ALM?
+            //data timestamp is in UTC already, just should be adjusted with ISO-8601
             auditEvent.time = new Date(result.Audits.Audit[i].Time[0]).toISOString();
             //set ID section
             var id = {};

@@ -9,4 +9,4 @@ ADD setup.sh /tmp/setup.sh
 RUN chmod +x /tmp/setup.sh
 RUN /tmp/setup.sh
 
-#RUN grunt --gruntfile /src/processors/alm-issue-change-processor/Gruntfile.js jshint
+RUN grunt --gruntfile /src/processors/alm-issue-change-processor/Gruntfile.js jshint
