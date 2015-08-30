@@ -24,21 +24,21 @@ function parseXml (data){
     parser(data, function(err, result){
 
         var issue_change = [];
-        var elements = result['Audits']['Audit'].length;
+        var elements = result.Audits.Audit.length;
         for(var i = 0; i< elements; i++) {
             var auditEvent = {};
             auditEvent.event = "issue_change";
             //TODO - boris: parse to  ISO 8601, what TZ we receive from ALM?
-            auditEvent.time = new Date(result['Audits']['Audit'][i]['Time'][0]).toISOString();
+            auditEvent.time = new Date(result.Audits.Audit[i].Time[0]).toISOString();
             //set ID section
             var id = {};
-            id.uid =  result['Audits']['Audit'][i]['ParentId'][0];
-            id.auditId = result['Audits']['Audit'][i]['Id'][0];
+            id.uid =  result.Audits.Audit[i].ParentId[0];
+            id.auditId = result.Audits.Audit[i].Id[0];
             auditEvent.id = id;
             //set tags, which are not from metadata
             var tags = {};
-            tags.User = result['Audits']['Audit'][i]['User'][0];
-            tags.Action = result['Audits']['Audit'][i]['Action'][0];
+            tags.User = result.Audits.Audit[i].User[0];
+            tags.Action = result.Audits.Audit[i].Action[0];
             auditEvent.tags = tags;
             var source = {};
             source.Location = params.C_ALM_LOCATION;
@@ -46,8 +46,8 @@ function parseXml (data){
             source.Project = params.C_PROJECT;
             auditEvent.source = source;
             var fi = [];
-            for(var j = 0; j < result['Audits']['Audit'][i]['Properties'].length ; j++){
-                fi.push(createFieldFromProperty(result['Audits']['Audit'][i]['Properties'][j]));
+            for(var j = 0; j < result.Audits.Audit[i].Properties.length ; j++){
+                fi.push(createFieldFromProperty(result.Audits.Audit[i].Properties[j]));
             }
             auditEvent.fields = fi[0];
 
@@ -57,20 +57,20 @@ function parseXml (data){
         //use process stdout via console.log to send the result to result-processing (parent process)
         console.log(JSON.stringify(issue_change));
         process.exit(0);
-    })
+    });
 }
 
 //TODO - boris: use Object.keys to enumerate attributes. Problem: prop['Property'][0].$.Label works, prop['Property'][0].$.keys[0] does not work
 function createFieldFromProperty(prop){
     var fields = [];
 
-    for(var p = 0; p < prop['Property'].length; p++){
+    for(var p = 0; p < prop.Property.length; p++){
         var field = {};
 
-        field.label = setIfNotEmpty(prop['Property'][p].$.Label);
-        field.name = setIfNotEmpty(prop['Property'][p].$.Name);
-        field.from = setIfNotEmpty(prop['Property'][p]['OldValue'][0]);
-        field.to = setIfNotEmpty(prop['Property'][p]['NewValue'][0]);
+        field.label = setIfNotEmpty(prop.Property[p].$.Label);
+        field.name = setIfNotEmpty(prop.Property[p].$.Name);
+        field.from = setIfNotEmpty(prop.Property[p].OldValue[0]);
+        field.to = setIfNotEmpty(prop.Property[p].NewValue[0]);
         fields.push(field);
     }
     return fields;
@@ -109,7 +109,7 @@ function readInputStream(callback) {
         var chunk = process.stdin.read();
         if (chunk !== null) {
             console.error('XML created from the input stream: ' + chunk);
-            callback(chunk)
+            callback(chunk);
         }
     });
 }
