@@ -6,7 +6,11 @@ dependencies:
     - docker build -t gaiaadm/alm-issue-change-processor:$BUILD_TAG .
 test:
   override:
-    - /bin/true
+    # run jshint
+    - docker run --name jshint-runner gaiaadm/alm-issue-change-processor:$BUILD_TAG grunt jshint
+    # run unit tests
+    - docker run -e AMQ_USER="admin" -e AMQ_PASSWORD="admin" -v "/tmp:/upload" --link rabbitmq-master:amqserver --link mgs:metricsgw --name unit-test-runner gaiaadm/alm-issue-change-processor:$BUILD_TAG grunt unit
+    - docker cp unit-test-runner:/src/unit-test-results.xml $CIRCLE_TEST_REPORTS/nodejs
 deployment:
   hub:
     branch: master
