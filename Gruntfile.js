@@ -22,7 +22,7 @@ module.exports = function(grunt) {
                     clearRequireCache: false
 
                 },
-                src: ['test/*.js']
+                src: ['processors/alm-issue-change-processor/test/*.js']
             }
         }
     });
