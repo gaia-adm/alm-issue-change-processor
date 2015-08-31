@@ -6,6 +6,8 @@ dependencies:
     - docker build -t gaiaadm/alm-issue-change-processor:$BUILD_TAG .
 test:
   override:
+    # prepare RabbitMQ for testing the processor
+    - docker run -d -e RABBITMQ_PASS="admin" --name rabbitmq gaiaadm/rabbitmq; sleep 10
     # run jshint
     - docker run --name jshint-runner gaiaadm/alm-issue-change-processor:$BUILD_TAG grunt jshint
     # run unit tests
