@@ -3,8 +3,10 @@ CircleCI build status: [![Circle CI](https://circleci.com/gh/gaia-adm/alm-issue-
 # ALM issue change data processor
 
 This is ALM issue change data processor for GAIA analytics. It is based on "gaiaadm/result-processing" Docker image.
+
 Tested with ALM 12
-*Input data format* is exactly as returned by ALM Auditing ReST API.
+
+**Input data format** is exactly as returned by ALM Auditing ReST API.
  - Request example: /qcbin/rest/domains/Default/projects/bp1/audits?query={parent-type[defect];parent-id[>0];id[>123]}&page-size=<PAGE_SIZE>&start-index=<i>&order-by={time[asc]}
  - Response example:
  ```
@@ -44,7 +46,7 @@ Tested with ALM 12
      </Audit>
  </Audits>
  ```
- *Output data format* is exactly as specifed [here](https://github.com/gaia-adm/api-data-format)
+**Output data format** is exactly as specifed [here](https://github.com/gaia-adm/api-data-format)
 
 
 ## Building
@@ -65,7 +67,8 @@ Execute tests:
 Limitations:
  - cannot run when RabbitMQ password is empty (common limitations for all data procesors)
 
-## How-to generate synthetic data without having ALM and data collector running (Windows machine, all the names are just examples and can be changed):
+## How-to
+**generate synthetic data** without having ALM and data collector running (Windows machine, all the names are just examples and can be changed):
  - must run: RabbitMQ, results-upload-service
  - run the processor at least once without any data to create a queue in RabbitMQ
  - create c:\upload folder
