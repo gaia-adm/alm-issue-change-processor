@@ -9,7 +9,7 @@ Tested with ALM 12
 **Input data format** is exactly as returned by ALM Auditing ReST API.
  - Request example: /qcbin/rest/domains/Default/projects/bp1/audits?query={parent-type[defect];parent-id[>0];id[>123]}&page-size=<PAGE_SIZE>&start-index=<i>&order-by={time[asc]}
  - Response example:
- ```
+ `
  <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
  <Audits TotalResults="2">
      <Audit>
@@ -45,7 +45,8 @@ Tested with ALM 12
          </Properties>
      </Audit>
  </Audits>
- ```
+ `
+
 **Output data format** is exactly as specifed [here](https://github.com/gaia-adm/api-data-format)
 
 
