@@ -7,6 +7,10 @@ var params = getProcessParameters();
 
 exitOnSignal('SIGTERM');
 
+var logLevelsMap = {
+    'DEBUG': 1, 'INFO': 2, 'WARNING': 3, 'ERROR': 4, 'CRITICAL': 5
+};
+
 if (Object.keys(params).length > 0) {
     // custom metadata keys are prefixed with C_
     console.error(' LOCATION: ' + params.C_ALM_LOCATION);
@@ -54,7 +58,8 @@ function parseXml (data){
 
             issue_change.push(auditEvent);
         }
-        console.error(' ALM issue change payload to be sent to metrics-gateway-service: ' + JSON.stringify(issue_change));
+        log('INFO', 'processor.js', 'ALM issue change payload to be sent to metrics-gateway-service; size in characters: ' + JSON.stringify(issue_change).length);
+        log('DEBUG', 'processor.js', 'ALM issue change payload to be sent to metrics-gateway-service: ' + JSON.stringify(issue_change));
         //use process stdout via console.log to send the result to result-processing (parent process)
         console.log(JSON.stringify(issue_change));
         process.exit(0);
@@ -117,10 +122,19 @@ function readInputStream(callback) {
     process.stdin.on('readable', function () {
         var chunk = process.stdin.read();
         if (chunk !== null) {
-            console.error(' XML created from the input stream: ' + chunk);
+            log('INFO', 'processor.js', 'XML created from the input stream; size in characters: ' + chunk.length);
+            log('DEBUG', 'processor.js', 'XML created from the input stream' + chunk);
             callback(chunk);
         }
     });
+}
+
+function log(level, location, message) {
+    var logLevel = logLevelsMap[level];
+    var configuredLogLevel = logLevelsMap[process.env.P_LOG_LEVEL || 'DEBUG'];
+    if (logLevel >= configuredLogLevel) {
+        console.error(level + ':' + location + ':' + message);
+    }
 }
 
 module.exports.setIfNotEmpty = setIfNotEmpty;
