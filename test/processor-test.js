@@ -27,7 +27,7 @@ describe('processor-test', function () {
     describe('#createFieldFromProperty()', function () {
         //single property xml example: '<Properties><Property Label="Severity" Name="severity"><NewValue>3-High</NewValue><OldValue>2-Medium</OldValue></Property></Properties>';
         it('regularProperty', function () {
-
+            console.error('running regularProperty');
             var prop = pr.createFieldFromProperty(createPropertyObject('Severity', 'severity', '3-High', '2-Medium'));
             assert.strictEqual(prop.constructor, Array, 'prop must be an array');
             assert.equal(prop.length, 1, 'prop array must have 1 element');
@@ -38,6 +38,7 @@ describe('processor-test', function () {
         });
         //single property no old value xml example: '<Properties><Property Label="Severity" Name="severity"><NewValue>3-High</NewValue></Property></Properties>';
         it('noOldValue', function () {
+            console.error('running noOldValue');
             var prop = pr.createFieldFromProperty(createPropertyObject('Severity', 'severity', '3-High', ''));
             assert.strictEqual(prop.constructor, Array, 'prop must be an array');
             assert.equal(prop.length, 1, 'prop array must have 1 element');
@@ -48,6 +49,7 @@ describe('processor-test', function () {
         });
         //single property empty new value xml example: '<Properties><Property Label="Severity" Name="severity"><NewValue></NewValue><OldValue>3-High</OldValue></Property></Properties>';
         it('EmptyNewValue', function () {
+            console.error('running EmptyNewValue');
             var prop = pr.createFieldFromProperty(createPropertyObject('Severity', 'severity', '', '3-High'));
             assert.strictEqual(prop.constructor, Array, 'prop must be an array');
             assert.equal(prop.length, 1, 'prop array must have 1 element');
@@ -58,6 +60,7 @@ describe('processor-test', function () {
         });
         //2 properties xml example: '<Properties><Property Label="Severity" Name="severity"><NewValue>3-High</NewValue><OldValue>2-Medium</OldValue></Property><Property Label="Assigned to" Name="owner"><NewValue>Rick</NewValue><OldValue>Bob</OldValue></Property></Properties>';
         it('twoProperties', function () {
+            console.error('running twoProperties');
             var p1 = createPropertyObject('Severity', 'severity', '3-High', '2-Medium');
             var p2 = createPropertyObject('Assigned to', 'owner', 'Rick', 'Bob');
             var p = new Object();
