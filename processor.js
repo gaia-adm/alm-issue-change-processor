@@ -127,14 +127,21 @@ function getProcessParameters() {
 
 function readInputStream(callback) {
     console.error(' Input stream received, start reading');
+
     process.stdin.setEncoding('utf8');
+    var fullInput = '';
     process.stdin.on('readable', function () {
         var chunk = process.stdin.read();
         if (chunk !== null) {
-            log('INFO', 'processor.js', 'XML created from the input stream; size in characters: ' + chunk.length);
-            log('DEBUG', 'processor.js', 'XML created from the input stream' + chunk);
-            callback(chunk);
+            log('INFO', 'processor.js', 'Next chunk size: ' + chunk.length);
+            log('DEBUG', 'processor.js', 'Next chunk received: ' + chunk);
+            fullInput = fullInput + chunk;
         }
+    });
+
+    process.stdin.on('end', function() {
+        log('INFO', 'processor.js', 'XML created from the input stream; size in characters: ' + fullInput.length);
+        callback(fullInput);
     });
 }
 
