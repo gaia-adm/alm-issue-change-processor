@@ -140,8 +140,10 @@ function readInputStream(callback) {
     });
 
     process.stdin.on('end', function() {
-        log('INFO', 'processor.js', 'XML created from the input stream; size in characters: ' + fullInput.length);
-        callback(fullInput);
+        if(fullInput.length != null){
+            log('INFO', 'processor.js', 'XML created from the input stream; size in characters: ' + fullInput.length);
+            callback(fullInput);
+        }
     });
 }
 
