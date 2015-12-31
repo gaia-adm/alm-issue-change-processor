@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/gaia-adm/alm-issue-change-processor.svg?style=svg)](https://circleci.com/gh/gaia-adm/alm-issue-change-processor) [![](https://badge.imagelayers.io/gaiaadm/alm-issue-change-processor:latest.svg)](https://imagelayers.io/?images=gaiaadm/alm-issue-change-processor:latest 'Get your own badge on imagelayers.io')
+[![Circle CI](https://circleci.com/gh/gaia-adm/alm-issue-change-processor.svg?style=svg)](https://circleci.com/gh/gaia-adm/alm-issue-change-processor) [![Codacy Badge](https://api.codacy.com/project/badge/grade/356604127d8643f2844203f54b94bbaa)](https://www.codacy.com/app/alexei-led/alm-issue-change-processor) [![](https://badge.imagelayers.io/gaiaadm/alm-issue-change-processor:latest.svg)](https://imagelayers.io/?images=gaiaadm/alm-issue-change-processor:latest 'Get your own badge on imagelayers.io')
 
 # ALM issue change data processor
 
