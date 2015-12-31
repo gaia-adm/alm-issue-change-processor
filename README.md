@@ -1,4 +1,6 @@
-CircleCI build status: [![Circle CI](https://circleci.com/gh/gaia-adm/alm-issue-change-processor.svg?style=svg)](https://circleci.com/gh/gaia-adm/alm-issue-change-processor)
+[![](https://badge.imagelayers.io/gaiaadm/alm-issue-change-processor:latest.svg)](https://imagelayers.io/?images=gaiaadm/alm-issue-change-processor:latest 'Get your own badge on imagelayers.io')
+
+*CircleCI:* [![Circle CI](https://circleci.com/gh/gaia-adm/alm-issue-change-processor.svg?style=svg)](https://circleci.com/gh/gaia-adm/alm-issue-change-processor)
 
 # ALM issue change data processor
 
