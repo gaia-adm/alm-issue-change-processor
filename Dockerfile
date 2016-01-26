@@ -10,4 +10,4 @@ WORKDIR /src/processors/alm-issue-change-processor
 
 RUN npm install
 
-RUN grunt --gruntfile /src/processors/alm-issue-change-processor/Gruntfile.js jshint
+RUN grunt --gruntfile Gruntfile.js jshint
