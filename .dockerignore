@@ -1,0 +1,5 @@
+.git
+README.md
+.gitignore
+alm-issue-change-processor.service
+circle.yml
