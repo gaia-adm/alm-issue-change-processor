@@ -6,8 +6,6 @@ ARG https_proxy
 # Bundle app source
 COPY . /src/processors/alm-issue-change-processor
 
-WORKDIR /src/processors/alm-issue-change-processor
+RUN cd /src/processors/alm-issue-change-processor && npm install
 
-RUN npm install
-
-RUN grunt --gruntfile Gruntfile.js jshint
+RUN grunt --gruntfile /src/processors/alm-issue-change-processor/Gruntfile.js jshint
